@@ -7,7 +7,7 @@ in Rust (my own and others').
 <br>
 
 <a name="the-point"></a>
-# :postal\_horn:&ensp;The point
+# [:postal\_horn:](#the-point)&ensp;The point
 
 This project is dedicated to the one profound insight about Rust macro
 development: the difference between someone who is competent with macros vs an
@@ -48,7 +48,7 @@ the macro to generate it is generally the easy part.
 <br>
 
 <a name="focus"></a>
-# :boot:&ensp;Focus
+# [:boot:](#focus)&ensp;Focus
 
 Yes, these case studies are drawn from use cases that arise from work on macros,
 but the macros are never the interesting part. The ingenuity and sophistication
@@ -67,7 +67,7 @@ produce the generated code we came up with would be the easy part.
 <br>
 
 <a name="case-studies"></a>
-# :jack\_o\_lantern:&ensp;Case studies
+# [:jack\_o\_lantern:](#case-studies)&ensp;Case studies
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/todo">
