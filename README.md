@@ -70,13 +70,33 @@ produce the generated code we came up with would be the easy part.
 # [:jack\_o\_lantern:](#case-studies)&ensp;Case studies
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/todo">
-TODO<br>
+<a href="https://github.com/dtolnay/case-studies/tree/master/integer-match">
+Consecutive integer match patterns<br>
 </a></b></td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/todo">
-TODO<br>
+<a href="https://github.com/dtolnay/case-studies/tree/master/function-epilogue">
+Function epilogue<br>
+</a></b></td></tr></table>
+
+<table><tr><td><ul><li></li></ul></td><td><b>
+<a href="https://github.com/dtolnay/case-studies/tree/master/bitfield-assertion">
+Multiple of 8 const assertion<br>
+</a></b></td></tr></table>
+
+<table><tr><td><ul><li></li></ul></td><td><b>
+<a href="https://github.com/dtolnay/case-studies/tree/master/readonly-fields">
+Read-only fields of mutable struct<br>
+</a></b></td></tr></table>
+
+<table><tr><td><ul><li></li></ul></td><td><b>
+<a href="https://github.com/dtolnay/case-studies/tree/master/unit-type-parameters">
+Unit struct with type parameters<br>
+</a></b></td></tr></table>
+
+<table><tr><td><ul><li></li></ul></td><td><b>
+<a href="https://github.com/dtolnay/case-studies/tree/master/callable-types">
+User-defined callable types<br>
 </a></b></td></tr></table>
 
 <br>
