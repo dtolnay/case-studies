@@ -1,0 +1,1 @@
+## Consecutive integer match patterns
