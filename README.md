@@ -1,5 +1,4 @@
-Case Studies
-============
+## Case Studies
 
 This repository showcases some examples of tricky Rust code that I have
 encountered during my years working with a variety of advanced macro libraries
@@ -7,7 +6,8 @@ in Rust (my own and others').
 
 <br>
 
-## The point
+<a name="the-point"></a>
+# :postal\_horn:&ensp;The point
 
 This project is dedicated to the one profound insight about Rust macro
 development: the difference between someone who is competent with macros vs an
@@ -47,7 +47,8 @@ the macro to generate it is generally the easy part.
 
 <br>
 
-## Focus
+<a name="focus"></a>
+# :boot:&ensp;Focus
 
 Yes, these case studies are drawn from use cases that arise from work on macros,
 but the macros are never the interesting part. The ingenuity and sophistication
