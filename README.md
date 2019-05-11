@@ -1,4 +1,4 @@
-## Case&nbsp;Studies
+## Case&nbsp;studies
 
 This repository showcases some examples of tricky Rust code that I have
 encountered during my years working with a variety of advanced macro libraries
