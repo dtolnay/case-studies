@@ -66,6 +66,21 @@ produce the generated code we came up with would be the easy part.
 
 <br>
 
+<a name="case-studies"></a>
+# :jack\_o\_lantern:&ensp;Case studies
+
+<table><tr><td><ul><li></li></ul></td><td><b>
+<a href="https://github.com/dtolnay/case-studies/tree/master/todo">
+TODO<br>
+</a></b></td></tr></table>
+
+<table><tr><td><ul><li></li></ul></td><td><b>
+<a href="https://github.com/dtolnay/case-studies/tree/master/todo">
+TODO<br>
+</a></b></td></tr></table>
+
+<br>
+
 #### License
 
 <sup>
