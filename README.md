@@ -72,37 +72,37 @@ produce the generated code we came up with would be the easy part.
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/integer-match">
 Consecutive integer match patterns</a></b><br>
-<i>Topics: macro_rules, const</i><br>
+<sub><i>Topics: macro_rules, const</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/function-epilogue">
 Function epilogue</a></b><br>
-<i>Topics: borrow checker, no_std, closures</i><br>
+<sub><i>Topics: borrow checker, no_std, closures</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/bitfield-assertion">
 Multiple of 8 const assertion</a></b><br>
-<i>Topics: diagnostics, name resolution, const evaluation, traits</i><br>
+<sub><i>Topics: diagnostics, name resolution, const evaluation, traits</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/readonly-fields">
 Read-only fields of mutable struct</a></b><br>
-<i>Topics: deref coercion, borrow checker, repr, unsafe code, documentation</i><br>
+<sub><i>Topics: deref coercion, borrow checker, repr, unsafe code, documentation</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/unit-type-parameters">
 Unit struct with type parameters</a></b><br>
-<i>Topics: namespaces, glob imports, layout optimization, autotraits, documentation</i><br>
+<sub><i>Topics: namespaces, glob imports, layout optimization, autotraits, documentation</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/callable-types">
 User-defined callable types</a></b><br>
-<i>Topics: deref coercion, closures, trait objects, repr, unsafe code</i><br>
+<sub><i>Topics: deref coercion, closures, trait objects, repr, unsafe code</i></sub><br>
 </td></tr></table>
 
 <br>
