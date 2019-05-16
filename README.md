@@ -71,33 +71,39 @@ produce the generated code we came up with would be the easy part.
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/integer-match">
-Consecutive integer match patterns<br>
-</a></b></td></tr></table>
+Consecutive integer match patterns</a></b><br>
+<i>Topics: macro_rules, const</i><br>
+</td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/function-epilogue">
-Function epilogue<br>
-</a></b></td></tr></table>
+Function epilogue</a></b><br>
+<i>Topics: borrow checker, no_std, closures</i><br>
+</td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/bitfield-assertion">
-Multiple of 8 const assertion<br>
-</a></b></td></tr></table>
+Multiple of 8 const assertion</a></b><br>
+<i>Topics: diagnostics, name resolution, const evaluation, traits</i><br>
+</td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/readonly-fields">
-Read-only fields of mutable struct<br>
-</a></b></td></tr></table>
+Read-only fields of mutable struct</a></b><br>
+<i>Topics: deref coercion, borrow checker, repr, unsafe code, documentation</i><br>
+</td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/unit-type-parameters">
-Unit struct with type parameters<br>
-</a></b></td></tr></table>
+Unit struct with type parameters</a></b><br>
+<i>Topics: namespaces, glob imports, layout optimization, autotraits, documentation</i><br>
+</td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/callable-types">
-User-defined callable types<br>
-</a></b></td></tr></table>
+User-defined callable types</a></b><br>
+<i>Topics: deref coercion, closures, trait objects, repr, unsafe code</i><br>
+</td></tr></table>
 
 <br>
 
