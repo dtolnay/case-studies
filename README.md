@@ -70,15 +70,9 @@ produce the generated code we came up with would be the easy part.
 # [:jack\_o\_lantern:](#case-studies)&ensp;Case studies
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/integer-match">
-Consecutive integer match patterns</a></b><br>
-<sub><i>Topics: macro_rules, const</i></sub><br>
-</td></tr></table>
-
-<table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/function-epilogue">
-Function epilogue</a></b><br>
-<sub><i>Topics: borrow checker, no_std, closures</i></sub><br>
+<a href="https://github.com/dtolnay/case-studies/tree/master/readonly-fields">
+Read-only fields of mutable struct</a></b><br>
+<sub><i>Topics: deref coercion, borrow checker, repr, unsafe code, documentation</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
@@ -88,15 +82,21 @@ Multiple of 8 const assertion</a></b><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/readonly-fields">
-Read-only fields of mutable struct</a></b><br>
-<sub><i>Topics: deref coercion, borrow checker, repr, unsafe code, documentation</i></sub><br>
-</td></tr></table>
-
-<table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/tree/master/unit-type-parameters">
 Unit struct with type parameters</a></b><br>
 <sub><i>Topics: namespaces, glob imports, layout optimization, autotraits, documentation</i></sub><br>
+</td></tr></table>
+
+<table><tr><td><ul><li></li></ul></td><td><b>
+<a href="https://github.com/dtolnay/case-studies/tree/master/function-epilogue">
+Function epilogue</a></b><br>
+<sub><i>Topics: borrow checker, no_std, closures</i></sub><br>
+</td></tr></table>
+
+<table><tr><td><ul><li></li></ul></td><td><b>
+<a href="https://github.com/dtolnay/case-studies/tree/master/integer-match">
+Consecutive integer match patterns</a></b><br>
+<sub><i>Topics: macro_rules, const</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
