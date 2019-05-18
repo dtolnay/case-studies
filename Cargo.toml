@@ -1,11 +1,11 @@
 [workspace]
 members = [
-    "bitfield-assertion",
-    "bitfield-assertion/src/bitfield",
-    "bitfield-assertion/src/impl",
-    "callable-types",
-    "function-epilogue",
-    "integer-match",
-    "readonly-fields",
-    "unit-type-parameters",
+    "bitfield-assertion/demo",
+    "bitfield-assertion/demo/bitfield",
+    "bitfield-assertion/demo/impl",
+    "callable-types/demo",
+    "function-epilogue/demo",
+    "integer-match/demo",
+    "readonly-fields/demo",
+    "unit-type-parameters/demo",
 ]

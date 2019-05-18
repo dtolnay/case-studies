@@ -4,3 +4,7 @@ version = "0.0.0"
 authors = ["David Tolnay <dtolnay@gmail.com>"]
 edition = "2018"
 publish = false
+
+[[bin]]
+name = "case-study"
+path = "main.rs"
