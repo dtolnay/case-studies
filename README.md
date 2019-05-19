@@ -70,37 +70,37 @@ produce the generated code we came up with would be the easy part.
 # [:jack\_o\_lantern:](#case-studies)&ensp;Case studies
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/readonly-fields">
+<a href="https://github.com/dtolnay/case-studies/blob/master/readonly-fields/README.md">
 Read-only fields of mutable struct</a></b><br>
 <sub><i>Topics: deref coercion, borrow checker, repr, unsafe code, documentation</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/bitfield-assertion">
+<a href="https://github.com/dtolnay/case-studies/blob/master/bitfield-assertion/README.md">
 Multiple of 8 const assertion</a></b><br>
 <sub><i>Topics: diagnostics, name resolution, const evaluation, traits</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/unit-type-parameters">
+<a href="https://github.com/dtolnay/case-studies/blob/master/unit-type-parameters/README.md">
 Unit struct with type parameters</a></b><br>
 <sub><i>Topics: namespaces, glob imports, layout optimization, autotraits, documentation</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/function-epilogue">
+<a href="https://github.com/dtolnay/case-studies/blob/master/function-epilogue/README.md">
 Function epilogue</a></b><br>
 <sub><i>Topics: borrow checker, no_std, closures</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/integer-match">
+<a href="https://github.com/dtolnay/case-studies/blob/master/integer-match/README.md">
 Consecutive integer match patterns</a></b><br>
 <sub><i>Topics: macro_rules, const</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/tree/master/callable-types">
+<a href="https://github.com/dtolnay/case-studies/blob/master/callable-types/README.md">
 User-defined callable types</a></b><br>
 <sub><i>Topics: deref coercion, closures, trait objects, repr, unsafe code</i></sub><br>
 </td></tr></table>
