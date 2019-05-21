@@ -64,6 +64,9 @@ clever combination of Rust language features unrelated to macros. Lastly and
 least importantly, I tie it back to the macro to point out that making a macro
 produce the generated code we came up with would be the easy part.
 
+Read and enjoy; I hope you find these an enlightening window into this corner of
+Rust that has so far not been put into words.
+
 <br>
 
 <a name="case-studies"></a>
