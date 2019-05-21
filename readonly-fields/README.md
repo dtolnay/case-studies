@@ -69,8 +69,9 @@ struct S {
 }
 
 fn f(s: Box<S>) {
-    // Box<S> has no field called x so it isn't obvious why this line would
-    // be legal, but Box<S> dereferences to S which does have that field.
+    // Box<S> has no field called x so it isn't obvious why
+    // this line would be legal, but Box<S> dereferences to
+    // S which does have that field.
     println!("{}", s.x);
 }
 ```
