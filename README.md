@@ -73,9 +73,9 @@ Rust that has so far not been put into words.
 # [:jack\_o\_lantern:](#case-studies)&ensp;Case studies
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/blob/master/readonly-fields/README.md">
-Read-only fields of mutable struct</a></b><br>
-<sub><i>Topics: deref coercion, borrow checker, repr, unsafe code, documentation</i></sub><br>
+<a href="https://github.com/dtolnay/case-studies/blob/master/function-epilogue/README.md">
+Function epilogue</a></b><br>
+<sub><i>Topics: borrow checker, no_std, closures</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
@@ -91,9 +91,9 @@ Unit struct with type parameters</a></b><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
-<a href="https://github.com/dtolnay/case-studies/blob/master/function-epilogue/README.md">
-Function epilogue</a></b><br>
-<sub><i>Topics: borrow checker, no_std, closures</i></sub><br>
+<a href="https://github.com/dtolnay/case-studies/blob/master/readonly-fields/README.md">
+Read-only fields of mutable struct</a></b><br>
+<sub><i>Topics: deref coercion, borrow checker, repr, unsafe code, documentation</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
