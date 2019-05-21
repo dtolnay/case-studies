@@ -13,10 +13,10 @@ This project is dedicated to the one profound insight about Rust macro
 development: the difference between someone who is competent with macros vs an
 expert at macros mostly has nothing to do with how good they are "at macros".
 
-90% of what enables people to write powerful and user-friendly macro libraries
-pushing the limits of possibility is in their mastery of everything else about
-Rust outside of macros, and their creativity to put together ordinary language
-features in interesting ways that may not occur in handwritten code.
+90% of what enables people to push the limits of possibility in pursuit of a
+powerful and user-friendly macro library API is in their mastery of everything
+else about Rust outside of macros, and their creativity to put together ordinary
+language features in interesting ways that may not occur in handwritten code.
 
 You may occasionally come across Rust macros that you feel are really advanced
 or magical. If you ever feel this way, I encourage you to take a closer look and
