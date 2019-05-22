@@ -434,9 +434,15 @@ type MyPhantomData<T: ?Sized> = MyPhantomData<T>;
 which hides the implementation detail and drives focus to your handwritten
 documentation to show how the type is intended to be used.
 
-The `#[allow(type_alias_bounds)]` is required because trait bounds on type
-parameters are not respected by the current compiler implementation so it warns
-about them, but Rustdoc does display them which we want in this case.
+The `#[allow(type_alias_bounds)]` attribute suppresses a future compatibility
+lint that triggers on type aliases with trait bounds on the left hand side. The
+Rust compiler currently does not respect such bounds but this behavior is
+considered a compiler bug and is subject to change, potentially breaking code
+involving trait bounds in type aliases -- hence the lint. Our code above is in
+the clear because the bounds in the type alias exactly match the bounds implied
+by well-formedness of the right hand side, so the meaning is the same whether or
+not the compiler looks at the type alias bounds. We want the bounds there
+because they do appear correctly in Rustdoc.
 
 <br>
 
