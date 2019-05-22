@@ -16,9 +16,8 @@ pub fn bitfield(_args: TokenStream, input: TokenStream) -> TokenStream {
 
     TokenStream::from(quote! {
         fn __bitfield() {
-            let _: bitfield::MultipleOfEight<
-                [(); (0 #(+ <#fields as bitfield::Field>::BITS)*) % 8]
-            >;
+            const _: () = [()][(0 #(+ <#fields as bitfield::Field>::BITS)*) % 8];
+            const _: () = panic!("Hello world at compile-time!");
         }
     })
 }

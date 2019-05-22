@@ -1,3 +1,5 @@
+#![feature(const_panic, underscore_const_names)]
+
 use bitfield::*;
 
 #[bitfield] // (1+3+4+23)%8 != 0
