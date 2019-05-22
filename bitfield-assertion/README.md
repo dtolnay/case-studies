@@ -40,7 +40,7 @@ The two main ways a macro can trigger compile-time errors after macro expansion
 are in const evaluation and in type checking.
 
 Let's look at const evaluation first by writing a `const` that can be
-successfully computed if and only if the input expression is a mutiple of 8.
+successfully computed if and only if the input expression is a multiple of 8.
 There are many ways to do this but one way is to use `$e % 8` as an index into
 an array where the only legal index would be 0.
 
