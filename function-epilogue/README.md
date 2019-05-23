@@ -450,8 +450,44 @@ So that we don't need replacement, let's try having our generated closure
 capture `self` from the outer method `f`'s receiver argument.
 
 There are a lot of different ways to slice and dice this, but ultimately they
-all fall apart for borrow checker reasons. Remember how we had to add a cast to
-function pointer type in the fifth attempt? Well once the closure is capturing
+all fall apart for borrow checker reasons when &mut is involved.
+
+```rust
+struct S(i32);
+
+impl S {
+    // Before: compiles and works.
+    fn f(&mut self) -> &mut i32 {
+        &mut self.0
+    }
+
+    // After: does not compile.
+    fn f(&mut self) -> &mut i32 {
+        ...
+        let guard = Guard;
+
+        let original_f = move || {
+            /* original function body: */
+            &mut self.0
+        };
+        let value = original_f();
+
+        mem::forget(guard);
+        value
+    }
+}
+```
+
+```console
+error[E0495]: cannot infer an appropriate lifetime for borrow expression due to conflicting requirements
+  --> src/main.rs:16:13
+   |
+16 |             &mut self.0
+   |             ^^^^^^^^^^^
+```
+
+Remember how we had to add a cast to function pointer type in the fifth attempt
+to solve this same borrow checker failure? Well once the closure is capturing
 things, it can no longer be cast to a function pointer. Using `impl FnOnce` or
 `&mut dyn FnMut` here don't work either; as far as I can tell the correct type
 for these closure's cannot be accurately described in Rust's type system.
@@ -491,10 +527,12 @@ not involve replacing `self` tokens on a heuristic basis.
 
 <br>
 
-### Best known solution
+### Lifetime elision
 
-The approach from the fifth attempt, with the `VisitMut` replacement approach
-discussed under the sixth attempt. All together it ends up looking like this:
+As a recap, what we have so far is the closure casted to function pointer
+approach from the fifth attempt combined with the `VisitMut` replacement
+approach discussed under the sixth attempt. All together the expansion would
+behave like this:
 
 ```rust
 // Before
@@ -526,4 +564,156 @@ fn f(&self, a: Arg1, b: Arg2) -> Ret {
 }
 ```
 
-This is part of the implementation used for the [`no-panic`][no-panic] crate.
+Unfortunately we are not done because lifetime elision wrecks this approach. To
+make it concrete let me give you some possible definitions for the receiver
+type, `Arg1`, `Arg2`, `Ret`, and the function body, with lifetime elision in the
+mix:
+
+```rust
+struct S(i32);
+type Arg1<'a> = &'a ();
+type Arg2 = ();
+type Ret<'a> = &'a i32;
+
+impl S {
+    fn f(&self, _a: Arg1, _b: Arg2) -> Ret {
+        &self.0
+    }
+}
+```
+
+This compiles, with `S::f` eliding three lifetimes: the ones on `&self`, `Arg1`,
+and `Ret`.
+
+Let's apply our expansion.
+
+```rust
+impl S {
+    fn f(&self, _a: Arg1, _b: Arg2) -> Ret {
+        struct Guard;
+        impl Drop for Guard {
+            fn drop(&mut self) {
+                /* do the thing */
+            }
+        }
+        let guard = Guard;
+
+        let original_f = |_self: &Self, _a: Arg1, _b: Arg2| -> Ret {
+            &_self.0
+        } as fn(&Self, Arg1, Arg2) -> Ret;
+
+        let value = original_f(self, _a, _b);
+
+        mem::forget(guard);
+        value
+    }
+}
+```
+
+```console
+error[E0106]: missing lifetime specifier
+  --> src/main.rs:13:39
+   |
+13 |         } as fn(&Self, Arg1, Arg2) -> Ret;
+   |                                       ^^^ expected lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from argument 1 or argument 2
+```
+
+So what happened here? This is hitting a special behavior of lifetime elision in
+methods that accept `self` by reference. The signature of `S::f` is not
+`fn(&Self, Arg1, Arg2) -> Ret`, as much as it may look like it. Instead it is
+`for<'r, 'a> fn(&'r Self, Arg1<'a>, Arg2) -> Ret<'r>`. The compiler's error
+message is pointing out that `fn(&Self, Arg1, Arg2) -> Ret` isn't even a legal
+function type given the types involved here.
+
+The relevant elision behavior goes something like this: in methods that accept
+`self` by reference, elided lifetimes in the return type are assumed to refer to
+the receiver's lifetime regardless of the number of other other lifetimes among
+the other arguments. Meanwhile in functions without `self` or that accept `self`
+by value, elided lifetimes in the return type are permitted only if the function
+has exactly one input lifetime parameter across all the arguments; otherwise the
+signature is invalid. This rule reduces the occurrence of explicit lifetimes
+being necessary in method signatures, but makes life complicated for macros as
+we are experiencing here.
+
+The function pointer type in our generated code `fn(&Self, Arg1, Arg2) -> Ret`
+is invalid because it has elided the lifetime on `Ret` in the return type but
+there is more than one input lifetime: there is one as part of `&Self` and one
+as part of `Arg1`. And function pointers never get the
+method-with-self-by-reference special elision behavior. The thing that we have
+spelled `&Self` in the function pointer is just some ordinary argument type, not
+a method receiver.
+
+This lifetime elision complication effectively rules out the possibility of
+using a function pointer in our solution. This puts us in dire straits because:
+
+- as seen in the second attempt, we really need some kind of function or closure
+  in order for early returns to work right;
+
+- as seen in the fourth attempt, it needs to be a *nested* function or closure
+  so that this whole thing can be used inside trait impl blocks;
+
+- also from the fourth attempt, it can't be a nested function because the
+  signature may need to involve `Self`;
+
+- from the sixth attempt, making `self` available in the closure body through
+  closure capture is a dead end due to borrow checker trouble;
+
+- from the fifth attempt, passing `self` as a closure argument doesn't work
+  unless we use a function pointer;
+
+- lifetime elision rules make it impossible to come up with the right function
+  pointer type.
+
+<br>
+
+### Seventh attempt and solution
+
+For reasons that are beyond me, the following expansion seems to solve the
+entire set of constraints at once. Why is the rebinding of all the arguments
+necessary? I don't know, but without it we're in the same failing situation as
+back in the sixth attempt under the sentence that says "they all fall apart for
+borrow checker reasons when &mut is involved."
+
+```rust
+// Before
+fn f(&self, a: Arg1, b: Arg2) -> Ret {
+    /* original function body */
+}
+
+// After
+fn f(&self, a: Arg1, b: Arg2) -> Ret {
+    struct Guard;
+    impl Drop for Guard {
+        fn drop(&mut self) {
+            /* do the thing */
+        }
+    }
+    let guard = Guard;
+
+    let value = (move || {
+        // Rebind all the arguments:
+        let _self = self;
+        let a = a;
+        let b = b;
+
+        /*
+         * original function body, with self replaced by _self
+         * except in nested impls
+         */
+    })();
+
+    mem::forget(guard);
+    value
+}
+```
+
+I am pretty disappointed that the best known solution involves this obscure
+rebinding trick to work around what seems like a borrow checker limitation, and
+as a consequence suffers from its own limitation around use of `self` inside
+unexpanded macros within the function body (see sixth attempt). I guess this
+shows there is still much room remaining for borrow checker improvements!
+
+In any case, this expansion is part of the implementation used for the
+[`no-panic`][no-panic] crate.

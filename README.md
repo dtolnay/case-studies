@@ -75,7 +75,7 @@ Rust that has so far not been put into words.
 <table><tr><td><ul><li></li></ul></td><td><b>
 <a href="https://github.com/dtolnay/case-studies/blob/master/function-epilogue/README.md">
 Function epilogue</a></b><br>
-<sub><i>Topics: borrow checker, no_std, closures</i></sub><br>
+<sub><i>Topics: borrow checker, no_std, closures, lifetime elision</i></sub><br>
 </td></tr></table>
 
 <table><tr><td><ul><li></li></ul></td><td><b>
