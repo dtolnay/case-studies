@@ -40,7 +40,7 @@ impl Plus {
     }
 }
 
-/* something special here ... */
+// [Something special here ...]
 
 fn main() {
     let one_plus = Plus { n: 1 };
@@ -106,7 +106,7 @@ What we want conceptually is this kind of thing:
 ```rust
 impl Callable {
     fn call(&self, arg: u32) -> u32 {
-        /* function body */
+        // Function body
     }
 }
 

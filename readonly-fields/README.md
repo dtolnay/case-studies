@@ -18,7 +18,7 @@ directly would enable the caller to violate invariants of the API.
 
 pub struct Task {
     pub index: usize,
-    /* other private fields */
+    // other private fields
 }
 ```
 
@@ -30,7 +30,7 @@ solution.
 
 pub struct Task {
     index: usize,
-    /* other private fields */
+    // other private fields
 }
 
 impl Task {
@@ -114,7 +114,7 @@ pub struct Task {
 
 pub struct ReadOnlyTask {
     pub index: usize,
-    /* other private fields */
+    // other private fields
 }
 
 impl Deref for Task {
@@ -167,13 +167,13 @@ layout for structs with identical fields.
 #[repr(C)]
 pub struct Task {
     index: usize,
-    /* other private fields */
+    // other private fields
 }
 
 #[repr(C)]
 pub struct ReadOnlyTask {
     pub index: usize,
-    /* the same private fields */
+    // the same private fields
 }
 
 impl Deref for Task {
@@ -229,14 +229,14 @@ pub struct Task {
     #[cfg(not(oqueue_docs))]
     index: usize,
 
-    /* other private fields */
+    // other private fields
 }
 
 #[doc(hidden)]
 #[repr(C)]
 pub struct ReadOnlyTask {
     pub index: usize,
-    /* the same private fields */
+    // the same private fields
 }
 
 #[doc(hidden)]
@@ -280,6 +280,6 @@ pub struct Task {
     /// This field is read-only; writing to its value will not compile.
     pub index: usize,
 
-    /* other private fields */
+    // other private fields
 }
 ```

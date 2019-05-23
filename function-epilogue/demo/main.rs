@@ -10,14 +10,14 @@ impl S {
         struct Guard;
         impl Drop for Guard {
             fn drop(&mut self) {
-                /* do the thing */
+                // Do the thing
             }
         }
         let guard = Guard;
 
         let original_f = |_self: &Self, a: Arg1, b: Arg2| -> Ret {
             // Original function body, with self replaced by _self
-            // except in nested impls.
+            // except in nested impls:
 
             (&_self.0, a + b)
         } as fn(&Self, Arg1, Arg2) -> Ret;

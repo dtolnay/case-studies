@@ -12,7 +12,7 @@ mod oqueue {
         #[cfg(not(oqueue_docs))]
         index: usize,
 
-        /* other private fields */
+        // Other private fields:
         q: usize,
     }
 
@@ -21,7 +21,7 @@ mod oqueue {
     pub struct ReadOnlyTask {
         pub index: usize,
 
-        /* the same private fields */
+        // The same private fields:
         q: usize,
     }
 
