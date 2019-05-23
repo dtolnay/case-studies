@@ -206,6 +206,20 @@ The argument type `_self: &Self` can't be used because a function like
 `original_f` is its own self-contained item and does not have access to an outer
 `Self` or type parameters.
 
+```console
+error[E0401]: can't use generic parameters from outer function
+ --> src/main.rs:8:31
+  |
+1 | impl S {
+  | ---- `Self` type implicitly declared here, by this `impl`
+...
+8 |         fn original_f(_self: &Self, a: Arg1, b: Arg2) -> Ret {
+  |                               ^^^^
+  |                               |
+  |                               use of generic parameter from outer function
+  |                               use a type here instead
+```
+
 Maybe we could ask the user to write our attribute macro on the impl block
 rather than on functions but this would be confusing; a solution that does not
 require this would be better.
