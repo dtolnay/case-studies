@@ -676,12 +676,12 @@ borrow checker reasons when &mut is involved."
 
 ```rust
 // Before
-fn f(&self, a: Arg1, b: Arg2) -> Ret {
+fn f(&mut self, a: Arg1, b: Arg2) -> Ret {
     // (Original function body)
 }
 
 // After
-fn f(&self, a: Arg1, b: Arg2) -> Ret {
+fn f(&mut self, a: Arg1, b: Arg2) -> Ret {
     struct Guard;
     impl Drop for Guard {
         fn drop(&mut self) {
