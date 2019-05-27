@@ -392,7 +392,7 @@ with `_self` as indicated in the fifth attempt, the result is invalid Rust
 syntax:
 
 ```rust
-fn f(&self) {
+fn f(&self) -> &i32 {
     struct Guard;
     impl Drop for Guard {
         fn drop(&mut self) {
