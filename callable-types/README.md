@@ -331,7 +331,8 @@ be represented like `struct GeneratedClosure { captured: Callable }` but:
 
 So this is the big caveat; don't count on this to work now or continue working
 in the future. Nothing on this page is a robust solution, only interesting. For
-now I think this is the closest we get:
+now I think this is the closest we get, by adding an assertion as a basic smoke
+test that the closure matches the expected size:
 
 ```rust
 use std::mem;
