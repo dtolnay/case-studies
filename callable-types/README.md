@@ -376,6 +376,97 @@ fn main() {
 
 <br>
 
+### Fourth attempt
+
+There is one remaining problem to sort out. The following line from the third
+attempt may contain undefined behavior:
+
+```rust
+let uninit_callable: Self = unsafe { mem::uninitialized() };
+```
+
+Usually the most common way that creating an uninitialized value of an unknown
+type in generic code causes undefined behavior is if an expression like
+`mem::uninitialized::<T>()` might be instantiated with a choice of `T` that is
+uninhabited, such as the `!` type. When that happens, the compiler is free to
+turn the `mem::uninitialized` call into [`unreachable_unchecked`] and plummet
+off the end of your function, even though you intended for this line to be a
+noop.
+
+[`unreachable_unchecked`]: https://doc.rust-lang.org/std/hint/fn.unreachable_unchecked.html
+
+As used here, that's not a concern -- we know `Self` is inhabited at runtime
+because there exists a `&Self` in scope that was passed in by the caller. If
+`Self` were uninhabited, it would be impossible for the caller to have an
+instance of `Self` on which to borrow (`&self`) and call `deref`.
+
+Instead we need to worry about the second most common way that creating
+uninitialized values of an unknown type causes undefined behavior, and that's if
+the uninitialized type has nontrivial validity invariants. In our case if the
+memory representation of `Self` contains a bool, char, `&`, `&mut`, Box,
+NonZero, or any other type where not all possible values are valid, then
+`mem::uninitialized::<Self>()` is immediate UB.
+
+The correct way to manipulate uninitialized memory of generic type is through
+[`MaybeUninit`].
+
+[`MaybeUninit`]: https://doc.rust-lang.org/std/mem/union.MaybeUninit.html
+
+```rust
+let uninit_callable = MaybeUninit::<Self>::uninit();
+let uninit_closure = move |arg: u32| Self::call(
+    unsafe { &*uninit_callable.as_ptr() },
+    arg,
+);
+```
+
+The final expanded code all together is:
+
+```rust
+use std::mem::{self, MaybeUninit};
+use std::ops::Deref;
+
+/// Function object that adds some number to its input.
+struct Plus {
+    n: u32,
+}
+
+impl Plus {
+    fn call(&self, arg: u32) -> u32 {
+        self.n + arg
+    }
+}
+
+impl Deref for Plus {
+    type Target = dyn Fn(u32) -> u32;
+
+    fn deref(&self) -> &Self::Target {
+        let uninit_callable = MaybeUninit::<Self>::uninit();
+        let uninit_closure = move |arg: u32| Self::call(
+            unsafe { &*uninit_callable.as_ptr() },
+            arg,
+        );
+        let size_of_closure = mem::size_of_val(&uninit_closure);
+        fn second<'a, T>(_a: &T, b: &'a T) -> &'a T {
+            b
+        }
+        let reference_to_closure = second(&uninit_closure, unsafe { mem::transmute(self) });
+        mem::forget(uninit_closure);
+        assert_eq!(size_of_closure, mem::size_of::<Self>());
+        let reference_to_trait_object = reference_to_closure as &dyn Fn(u32) -> u32;
+        reference_to_trait_object
+    }
+}
+
+fn main() {
+    let one_plus = Plus { n: 1 };
+    let sum = one_plus(2);
+    assert_eq!(sum, 1 + 2);
+}
+```
+
+<br>
+
 ### Implementation
 
 Packaging this up into a macro is the easy part. We would most likely want an

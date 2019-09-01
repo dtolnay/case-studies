@@ -1,4 +1,4 @@
-use std::mem;
+use std::mem::{self, MaybeUninit};
 use std::ops::Deref;
 
 /// Function object that adds some number to its input.
@@ -16,8 +16,8 @@ impl Deref for Plus {
     type Target = dyn Fn(u32) -> u32;
 
     fn deref(&self) -> &Self::Target {
-        let uninit_callable: Self = unsafe { mem::uninitialized() };
-        let uninit_closure = move |arg: u32| Self::call(&uninit_callable, arg);
+        let uninit_callable = MaybeUninit::<Self>::uninit();
+        let uninit_closure = move |arg: u32| Self::call(unsafe { &*uninit_callable.as_ptr() }, arg);
         let size_of_closure = mem::size_of_val(&uninit_closure);
         fn second<'a, T>(_a: &T, b: &'a T) -> &'a T {
             b
