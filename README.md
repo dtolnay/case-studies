@@ -108,6 +108,12 @@ User-defined callable types</a></b><br>
 <sub><i>Topics: deref coercion, closures, trait objects, repr, unsafe code</i></sub><br>
 </td></tr></table>
 
+<table><tr><td><ul><li></li></ul></td><td><b>
+<a href="https://github.com/dtolnay/case-studies/blob/master/autoref-specialization/README.md">
+Autoref-based stable specialization</a></b><br>
+<sub><i>Topics: traits, method resolution</i></sub><br>
+</td></tr></table>
+
 <br>
 
 #### License
