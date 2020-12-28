@@ -326,8 +326,9 @@ macro_rules! anyhow {
     ($err:expr) => ({
         #[allow(unused_imports)]
         use $crate::{DisplayKind, StdErrorKind};
-        let error = $err;
-        (&error).anyhow_kind().new(error)
+        match $err {
+            error => (&error).anyhow_kind().new(error),
+        }
     });
 }
 
