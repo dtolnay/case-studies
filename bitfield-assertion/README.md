@@ -48,7 +48,7 @@ an array where the only legal index would be 0.
 macro_rules! require_multiple_of_eight {
     ($e:expr) => {
         const REQUIRE_MULTIPLE_OF_EIGHT: () = [()][$e % 8];
-        let _ = REQUIRE_MULTIPLE_OF_EIGHT;
+        _ = REQUIRE_MULTIPLE_OF_EIGHT;
     };
 }
 ```
@@ -89,7 +89,7 @@ the length of a fixed sized array, so we will rely on that.
 ```rust
 macro_rules! require_multiple_of_eight {
     ($e:expr) => {
-        let _ = <[(); $e % 8] as $crate::MultipleOfEight>::check();
+        _ = <[(); $e % 8] as $crate::MultipleOfEight>::check();
     };
 }
 

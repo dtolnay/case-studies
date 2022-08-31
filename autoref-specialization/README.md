@@ -316,7 +316,7 @@ impl Error {
         Error {}
     }
     pub(crate) fn from_std_error<T: StdError>(error: T) -> Self {
-        let _ = error.source(); // it works!
+        _ = error.source(); // it works!
         println!("called Error::from_std_error");
         Error {}
     }
