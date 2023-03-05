@@ -207,26 +207,18 @@ field were declared `pub`.
 
 ### Third attempt
 
-We can use `#[cfg(rustdoc)]` to distinguish when documentation is being
-rendered, though this cfg is currently available on nightly only. The tracking
-issue is [rust-lang/rust#43781].
+We can use [`#[cfg(doc)]`][cfgdoc] to distinguish when documentation is being
+rendered, which is available since Rust 1.41.
 
-[rust-lang/rust#43781]: https://github.com/rust-lang/rust/issues/43781
-
-I ended up using a Cargo config to have rustdoc pass some different cfg.
-
-```toml
-[build]
-rustdocflags = ["--cfg", "oqueue_docs"]
-```
+[cfgdoc]: https://doc.rust-lang.org/1.67.0/rustdoc/advanced-features.html#cfgdoc-documenting-platform-specific-or-feature-specific-information
 
 ```rust
 #[repr(C)]
 pub struct Task {
-    #[cfg(oqueue_docs)]
+    #[cfg(doc)]
     pub index: usize,
 
-    #[cfg(not(oqueue_docs))]
+    #[cfg(not(doc))]
     index: usize,
 
     // other private fields
@@ -273,7 +265,7 @@ the behavior as an attribute macro][readonly] is the easy part:
 
 ```rust
 /// ...
-#[readonly::make(doc = oqueue_docs)]
+#[readonly::make]
 pub struct Task {
     /// ...
     ///

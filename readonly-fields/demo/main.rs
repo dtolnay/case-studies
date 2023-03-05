@@ -6,10 +6,10 @@ mod oqueue {
     #[derive(Default)]
     #[repr(C)]
     pub struct Task {
-        #[cfg(oqueue_docs)]
+        #[cfg(doc)]
         pub index: usize,
 
-        #[cfg(not(oqueue_docs))]
+        #[cfg(not(doc))]
         index: usize,
 
         // Other private fields:
