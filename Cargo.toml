@@ -1,5 +1,4 @@
 [workspace]
-resolver = "2"
 members = [
     "bitfield-assertion/demo",
     "bitfield-assertion/demo/bitfield",
@@ -10,3 +9,4 @@ members = [
     "readonly-fields/demo",
     "unit-type-parameters/demo",
 ]
+resolver = "2"
