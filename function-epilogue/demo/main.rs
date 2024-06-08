@@ -35,4 +35,6 @@ impl S {
     }
 }
 
-fn main() {}
+fn main() {
+    let _ = S;
+}
