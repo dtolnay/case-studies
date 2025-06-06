@@ -6,11 +6,11 @@ pub type Arg2 = i32;
 pub type Ret<'a> = (&'a mut i32, i32);
 
 impl S {
-    pub fn original_f(&mut self, a: Arg1, b: Arg2) -> Ret {
+    pub fn original_f(&mut self, a: Arg1, b: Arg2) -> Ret<'_> {
         (&mut self.0, a + b)
     }
 
-    pub fn generated_f(&mut self, a: Arg1, b: Arg2) -> Ret {
+    pub fn generated_f(&mut self, a: Arg1, b: Arg2) -> Ret<'_> {
         struct Guard;
         impl Drop for Guard {
             fn drop(&mut self) {

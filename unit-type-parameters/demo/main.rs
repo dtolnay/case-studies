@@ -24,4 +24,5 @@ pub use self::phantom::*;
 
 fn main() {
     let _: MyPhantomData<usize> = MyPhantomData::<usize>;
+    println!("{}", std::mem::size_of::<MyPhantomData<usize>>());
 }
